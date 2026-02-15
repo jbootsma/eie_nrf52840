@@ -1,0 +1,43 @@
+#include <zephyr/dt-bindings/gpio/gpio.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+&sdl_dc {
+  height = <240>;
+  width = <320>;
+};
+
+&gpio0 {
+  ngpios = <4>;
+
+  sdl_gpio {
+    compatible = "zephyr,gpio-emul-sdl";
+    // Number keys 1-4.
+    scancodes = <30 31 32 33>;
+  };
+};
+
+/ {
+  buttons: buttons {
+    compatible = "gpio-keys";
+
+    button0: button0 {
+      gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
+      zephyr,code = <INPUT_BTN_0>;
+    };
+
+    button1: button1 {
+      gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
+      zephyr,code = <INPUT_BTN_1>;
+    };
+
+    button2: button2 {
+      gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+      zephyr,code = <INPUT_BTN_2>;
+    };
+
+    button3: button3 {
+      gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
+      zephyr,code = <INPUT_BTN_3>;
+    };
+  };
+};
