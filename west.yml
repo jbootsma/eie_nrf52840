@@ -8,6 +8,8 @@ manifest:
   remotes:
     - name: zephyrproject-rtos
       url-base: https://github.com/zephyrproject-rtos
+    - name: google
+      url-base: https://github.com/google
 
   projects:
     - name: zephyr
@@ -20,3 +22,11 @@ manifest:
           - cmsis_6    # required by the ARM port for Cortex-M
           - hal_nordic # required by the nRF52840
           - lvgl       # For graphics
+          - mbedtls    # For BT crypto on the sim build
+
+    - name: bumble
+      description: Python based BT controller simulation
+      remote: google
+      revision: v0.0.225
+      path: tools/bumble
+

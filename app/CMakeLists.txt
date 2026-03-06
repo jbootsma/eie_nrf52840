@@ -12,6 +12,7 @@ project(app LANGUAGES C)
 zephyr_include_directories(src)
 
 target_sources(app PRIVATE
+  src/game_link.c
   src/main.c
   src/screens.c
   src/screens/color_dbg.c

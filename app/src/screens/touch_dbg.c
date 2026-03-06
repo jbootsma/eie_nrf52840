@@ -1,4 +1,5 @@
 #include "screens.h"
+#include "game_link.h"
 
 #include <lvgl_input_device.h>
 #include <zephyr/device.h>
@@ -70,7 +71,18 @@ void touch_dbg_screen(screen_evt_t evt) {
 
   case SCREEN_EVT_BTN_PRESS:
   case SCREEN_EVT_BTN_LONG_PRESS:
-    change_to_screen(color_dbg_screen, LV_SCR_LOAD_ANIM_MOVE_LEFT, 200);
+    if (evt.params.button_code == INPUT_BTN_1) {
+      game_link_stop();
+    }
+    else if (evt.params.button_code == INPUT_BTN_2) {
+      game_link_host();
+    }
+    else if (evt.params.button_code == INPUT_BTN_3) {
+      game_link_discover();
+    }
+    else {
+      change_to_screen(color_dbg_screen, LV_SCR_LOAD_ANIM_MOVE_LEFT, 200);
+    }
     break;
 
   default:
